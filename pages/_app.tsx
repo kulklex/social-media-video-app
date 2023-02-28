@@ -4,6 +4,8 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import {useState, useEffect} from 'react'
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import Head from 'next/head'
+
 
 export default function App({ Component, pageProps }: AppProps) {
   
@@ -16,6 +18,9 @@ export default function App({ Component, pageProps }: AppProps) {
   if (isSSR) return null                   // <- This is just to prevent some errors in the future i.e for better performances 
   
   return (<GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}>
+    <Head>
+        <title>Social-Media-Video-App</title>
+      </Head>
     <Navbar/> 
     <div className='flex gap-6 md:gap-20'>
       <div className="h-[92vh] overflow-hidden xl:hover:overflow-auto">
