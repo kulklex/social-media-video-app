@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
   
   if (isSSR) return null                   // <- This is just to prevent some errors in the future i.e for better performances 
   
-  return (<GoogleOAuthProvider clientId='er'>
+  return (<GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}>
     <Navbar/> 
     <div className='flex gap-6 md:gap-20'>
       <div className="h-[92vh] overflow-hidden xl:hover:overflow-auto">
