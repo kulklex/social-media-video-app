@@ -61,8 +61,8 @@ const VideoCard = ({post} : {post: Video}) => {
 
       <div className="lg:ml-20 flex gap-4 relative">
         <div onMouseEnter={() => {setIsHover(true)}} onMouseLeave={() => {setIsHover(false)}} className="rounded-3xl">
-          <Link href={`/detail/${post?._id}`}>
-            <video src={post?.video?.asset?.url} loop ref={videoRef} className='ld:w-[600px] h-[300px] md:h-[400px] lg:h-[530px] w-[200px] rounded-2xl cursor-pointer bg-gray-200'></video>
+          <Link href={`/posts/${post?._id}`}>
+            <video src={post?.video?.asset?.url} loop ref={videoRef} className='lg:w-[600px] h-[300px] md:h-[400px] lg:h-[530px] w-[200px] rounded cursor-pointer bg-gray-100'></video>
           </Link>
 
           {isHover && (<div className='absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] lg:w-[600px] p-3'>

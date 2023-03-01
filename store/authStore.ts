@@ -1,12 +1,14 @@
 import {create} from 'zustand'
 import {persist} from 'zustand/middleware'
 import axios from 'axios'
+import { User } from '@/types'
+
 
 const authStore = (set:any) => ({
-    userProfile: null,
+    user: null,
 
-    addUser: (user: any) => set({userProfile: user}),
-    removeUser: () => set({userProfile: null})
+    addUser: (user: User) => set({user: user}),
+    removeUser: () => set({user: null})
 })
 
 const useAuthStore = create(
