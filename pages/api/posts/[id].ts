@@ -9,9 +9,9 @@ const handler = async (req:NextApiRequest, res:NextApiResponse ) => {
         const {id} = req.query as {id: string}
         const query = postDetailQuery(id)
 
-        const data = client.fetch(query)
+        const data = await client.fetch(query)
 
-        res.status(200).json(data)
+        res.status(200).json(data[0])
     }
 }
 
