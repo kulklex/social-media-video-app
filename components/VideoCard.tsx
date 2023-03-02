@@ -13,18 +13,18 @@ import { BsPlay } from 'react-icons/bs';
 
 const VideoCard = ({post} : {post: Video}) => {
  const [isHover, setIsHover] = useState(false)
- const [playing, setPlaying] = useState(false)
+ const [isPlaying, setIsPlaying] = useState(false)
  const [isVideoMuted, setIsVideoMuted] = useState(false)
  
  const videoRef = useRef<HTMLVideoElement>(null)
 
- const onVideoPress = () => {
-  if(playing){
+ const onVideoClick = () => {
+  if(isPlaying){
     videoRef?.current?.pause()
-    setPlaying(false)
+    setIsPlaying(false)
   } else {
     videoRef?.current?.play()
-    setPlaying(true)
+    setIsPlaying(true)
   }
  }
 
@@ -66,8 +66,8 @@ const VideoCard = ({post} : {post: Video}) => {
           </Link>
 
           {isHover && (<div className='absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] lg:w-[600px] p-3'>
-            {playing ? <button onClick={onVideoPress}><BsFillPauseFill className='text-black text-2xl lg:text-4xl'/></button>
-                      : <button onClick={onVideoPress}><BsFillPlayFill className='text-black text-2xl lg:text-4xl'/></button>
+            {isPlaying ? <button onClick={onVideoClick}><BsFillPauseFill className='text-black text-2xl lg:text-4xl'/></button>
+                      : <button onClick={onVideoClick}><BsFillPlayFill className='text-black text-2xl lg:text-4xl'/></button>
             }
             {isVideoMuted ? <button onClick={() => setIsVideoMuted(false)}><HiVolumeOff className='text-black text-2xl lg:text-4xl'/></button>
                       : <button onClick={() => setIsVideoMuted(true)}><HiVolumeUp className='text-black text-2xl lg:text-4xl'/></button>

@@ -17,10 +17,12 @@ export default function App({ Component, pageProps }: AppProps) {
   
   if (isSSR) return null                   // <- This is just to prevent some errors in the future i.e for better performances 
   
-  return (<GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}>
+  return (
+<GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}>
+  <div className='xl:w-[1200px] m-auto overflow-hidden h-[100vh]'>
     <Head>
         <title>Social-Media-Video-App</title>
-      </Head>
+    </Head>
     <Navbar/> 
     <div className='flex gap-6 md:gap-20'>
       <div className="h-[92vh] overflow-hidden xl:hover:overflow-auto">
@@ -30,5 +32,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </div>
     </div>
-  </GoogleOAuthProvider>)
+  </div>  
+</GoogleOAuthProvider>)
 }
