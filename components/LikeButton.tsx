@@ -4,9 +4,9 @@ import useAuthStore from '@/store/authStore'
 
 
 interface Props{
-    handleLike: () => void,
-    handleDislike: () => void,
-    likes: any[],
+    handleLike: () => void
+    handleDislike: () => void
+    likes: any[]
 }
 
 
