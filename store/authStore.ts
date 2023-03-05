@@ -6,6 +6,7 @@ import { BASE_URL } from '@/utils'
 
 const authStore = (set:any) => ({
     user: null,
+    allUsers: [],
 
     addUser: (user: User) => set({user: user}),
     removeUser: () => set({user: null}),
