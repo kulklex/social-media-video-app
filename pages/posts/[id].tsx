@@ -10,11 +10,11 @@ import { BASE_URL } from '@/utils'
 import { Video } from '../../types';
 import useAuthStore from '@/store/authStore'
 import LikeButton from '../../components/LikeButton'
-
+import Comments from '../../components/Comments'
 
 
 interface Props{
-  postDetails: Video,
+  postDetails: Video
 }
 
 
@@ -26,6 +26,10 @@ export default function PostDetail({postDetails} : Props) {
 
   const [post, setPost] = useState<Video>(postDetails) // So we can manually change the post eg when someone likes the post it'll change that post to one with a like 
   
+  const [comment, setComment] = useState<string>('')
+  const [isPostingComment, setIsPostingComment] = useState<boolean>(false)
+
+
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [isVideoMuted, setIsVideoMuted] = useState<boolean>(false)
@@ -58,9 +62,27 @@ export default function PostDetail({postDetails} : Props) {
           like: like
         })
 
-        setPost({...post, likes: data.likes})
+        setPost({...post, likes: data?.likes})
     }
   }  
+
+
+  // Add Comment Function
+  const addComment = async (e:any) => {
+    e.preventDefault()
+
+    if(user && comment) {
+      setIsPostingComment(true)
+      const {data} = await axios.put(`${BASE_URL}/api/posts/${post?._id}`, {
+        userId: user?._id,
+        comment: comment
+      })
+
+      setPost({...post, comments: data?.comments})
+      setComment('')
+      setIsPostingComment(false)
+    }
+  }
   
 
   // If post doesn't exist
@@ -102,13 +124,17 @@ export default function PostDetail({postDetails} : Props) {
             <div className='text-md text-gray-600 italic lowercase tracking-wider flex gap-2 items-center justify-center'>
               {post?.postedBy?.userName}{' '}
               <GoVerified className='text-blue-400 text-xl' />
-            </div>            
+            </div>
+
             <div className='px-10 pt-3'>
               <p className='text-xl font-bold'>{post?.caption}</p>
             </div>
+
             <div className='lg:mt-5 mt-2 px-10'>
               {user && (<LikeButton likes={post?.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />)}
             </div>
+
+            <Comments comment={comment} comments={post?.comments} setComment={setComment} addComment={addComment} isPostingComment={isPostingComment}/>
           </div>
         </div>
         </div>

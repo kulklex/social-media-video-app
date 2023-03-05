@@ -10,7 +10,7 @@ export default {
         {name: 'likes', title: 'Likes', type: 'array', of: [
             {type: 'reference', to: [{type: 'user'}]}
         ]},
-        {name: 'comment', title: 'Comments', type: 'array', of: [{type: 'comment'}]},
+        {name: 'comments', title: 'Comments', type: 'array', of: [{type: 'comment'}]},
         {name: 'topic', title: 'Topic', type: 'string'},
     ]
 }
