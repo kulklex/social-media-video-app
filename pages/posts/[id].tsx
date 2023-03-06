@@ -90,7 +90,7 @@ export default function PostDetail({postDetails} : Props) {
 
   return (<> {post && (
     <div className='flex w-full absolute left-0 lg:left-2 top-0 lg:top-auto m-2 overflow-hidden bg-white flex-wrap lg:flex-nowrap'>
-      <div className="relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-black">
+      <div className="relative  w-[1000px] lg:w-9/12 flex justify-center items-center bg-black">
         <div className="absolute top-6 left-2 lg:left-6 flex gap-6 z-50">
           <p className='cursor-pointer' onClick={() => router.back()}>
             <MdOutlineCancel className='text-white text-[35px]'/>
@@ -118,25 +118,24 @@ export default function PostDetail({postDetails} : Props) {
 
       <div className='relative w-[1000px] md:w-[900px] lg:w-[700px]'>
         <div className='lg:mt-20 mt-10'>
-        <div className='flex gap-4 mb-4 bg-white w-full pl-10 cursor-pointer'>
-          <Image width={62} height={62} className="rounded-full" src={post?.postedBy?.image} alt="profile photo" />
-          <div>
-            <div className='text-md text-gray-600 italic lowercase tracking-wider flex gap-2 items-center justify-center'>
-              {post?.postedBy?.userName}{' '}
-              <GoVerified className='text-blue-400 text-xl' />
-            </div>
+          <div className='flex gap-4 mb-4 bg-white w-full pl-10 cursor-pointer'>
+            <div>
+              <div className='text-md text-gray-600 italic lowercase tracking-wider flex gap-2 items-center justify-center'>
+                <Image width={48} height={48} className="rounded-full" src={post?.postedBy?.image} alt="profile photo" />
+                {post?.postedBy?.userName}{' '}
+                <GoVerified className='text-blue-400 text-xl' />
+              </div>
 
-            <div className='px-10 pt-3'>
-              <p className='text-xl font-bold'>{post?.caption}</p>
-            </div>
+              <div className='px-10 pt-3'>
+                <p className='text-xl font-bold'>{post?.caption}</p>
+              </div>
 
-            <div className='lg:mt-5 mt-2 px-10'>
-              {user && (<LikeButton likes={post?.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />)}
+              <div className='lg:mt-5 mt-2 px-10 flex items-center justify-center'>
+                {user && (<LikeButton likes={post?.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />)}
+              </div>
             </div>
-
-            <Comments comment={comment} comments={post?.comments} setComment={setComment} addComment={addComment} isPostingComment={isPostingComment}/>
           </div>
-        </div>
+          <Comments comment={comment} comments={post?.comments} setComment={setComment} addComment={addComment} isPostingComment={isPostingComment}/>
         </div>
       </div>
     </div>
