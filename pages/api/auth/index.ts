@@ -8,8 +8,6 @@ const handler = async (req:NextApiRequest, res:NextApiResponse ) => {
         const user = req.body
         client.createIfNotExists(user).then(() => res.status(200).json({message: 'Login Success'}))
         .catch((err) => console.error(err))
-
-        
     }
 }
 
