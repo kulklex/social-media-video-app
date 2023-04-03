@@ -91,6 +91,7 @@ const Upload = () => {
     }
   }
 
+
   return (
     <div className="flex w-full h-full absolute left-0 top-[60px] lg:top-[70px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center">
       <div className="bg-white rounded-lg xl:h-[80vh] flex gap-6 flex-wrap justify-center items-center p-14 pt-6">
@@ -110,6 +111,11 @@ const Upload = () => {
                   <video src={videoAsset?.url} loop controls className='rounded-xl h-[430px] mt-16 bg-black'></video>
                 </div>) 
                 : (<label className='cursor-pointer'>
+                  {wrongFileType && (
+                    <p className='text-center text-xl text-red-400 font-semibold mt-4 w-[260px]'>
+                      Please select a video file (mp4 or webm or ogg)
+                    </p>
+                  )}
                   <div className='flex flex-col items-center justify-center h-full'>
                     <div className='flex flex-col items-center justify-center'>
                       <p className="font-bold text-xl"> <FaCloudUploadAlt className='text-gray-300 text-6xl'/> </p>
@@ -124,11 +130,6 @@ const Upload = () => {
                   </div>
                   <input type="file" name="upload-video" className="w-0 h-0" onChange={(e) => uploadVideo(e)}/>
                 </label>)}
-                {wrongFileType && (
-                  <p className='text-center text-xl text-red-400 font-semibold mt-4 w-[260px]'>
-                    Please select a video file (mp4 or webm or ogg)
-                  </p>
-                )}
               </div> 
               }
           </div>
